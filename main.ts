@@ -41,13 +41,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile12`, function (sprite, 
     game.setGameOverMessage(true, "credits me, you won")
     game.gameOver(true)
 })
-/**
- * overlaps and score changes
- */
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile11`, function (sprite, location) {
-    tiles.setTileAt(tiles.getTileLocation(7, 6), sprites.castle.tileGrass1)
-    inventory.push("trophey")
-})
 function fireAttackRing () {
     pause(100)
     for (let index = 0; index < 200; index++) {
@@ -294,6 +287,9 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     spritecount += -1
     music.play(music.melodyPlayable(music.magicWand), music.PlaybackMode.UntilDone)
 })
+/**
+ * overlaps and score changes
+ */
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     sprites.destroy(sprite)
     info.changeLifeBy(-1)
@@ -307,7 +303,6 @@ let boss: Sprite = null
 let projectile3: Sprite = null
 let facing = ""
 let enemies: Sprite = null
-let inventory: string[] = []
 let mySprite: Sprite = null
 let spawnenemies = false
 let bossspawn = false
@@ -334,7 +329,6 @@ mySprite = sprites.create(img`
     . . . . f f f f f f . . . 
     . . . . . . f f f . . . . 
     `, SpriteKind.Player)
-inventory = []
 info.startCountdown(10)
 info.setScore(0)
 controller.moveSprite(mySprite, 100, 100)
